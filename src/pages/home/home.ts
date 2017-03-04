@@ -1,7 +1,7 @@
 import { Component , ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Geolocation} from 'ionic-native'
-
+import {googlemaps} from 'googlemaps'; 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
