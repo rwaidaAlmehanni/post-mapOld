@@ -1,11 +1,17 @@
-import { Component, trigger, state, style, transition, animate, keyframes } from '@angular/core';
-import { NavController,AlertController, LoadingController, Loading } from 'ionic-angular';
+import { Component , trigger, state, style, transition, animate, keyframes } from '@angular/core';
+import { NavController, NavParams , AlertController} from 'ionic-angular';
 import { Auth } from '../../providers/auth';
-import { RegisterPage } from '../register/register';
-import { HomePage } from '../home/home';
+import { LoginPage } from '../login/login';
+/*
+  Generated class for the Register page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+*/
+
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html',
+   selector: 'page-register',
+  templateUrl: 'register.html',
 
   animations: [
     //For the logo
@@ -56,62 +62,57 @@ import { HomePage } from '../home/home';
     ])
   ]
 })
-export class LoginPage {
- loading: Loading;
+export class RegisterPage {
+	createSuccess = false;
   registerCredentials = {email: '', password: ''};
-  // logoState: any = "in";
-  // cloudState: any = "in";
-  // loginState: any = "in";
-  // formState: any = "in";
 
-  constructor(private nav: NavController, private auth: Auth, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams , private auth: Auth, private alertCtrl: AlertController) {}
 
-  }
 
 
  public createAccount() {
-    this.nav.push(RegisterPage);
+    this.navCtrl.push(LoginPage);
+  }
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad RegisterPage');
   }
 
 
 
-   public login() {
-    this.showLoading()
-    this.auth.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {
-        setTimeout(() => {
-        this.loading.dismiss();
-        this.nav.setRoot(HomePage)
-        });
+
+  public register() {
+    this.auth.register(this.registerCredentials).subscribe(success => {
+      if (success) {
+        this.createSuccess = true;
+          this.showPopup("Success", "Account created.");
       } else {
-        this.showError("Access Denied");
+        this.showPopup("Error", "Problem creating account.");
       }
     },
     error => {
-      this.showError(error);
+      this.showPopup("Error", error);
     });
   }
 
-  showLoading() {
-    this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    this.loading.present();
-  }
 
-  showError(text) {
-    setTimeout(() => {
-      this.loading.dismiss();
-    });
- 
+
+
+  showPopup(title, text) {
     let alert = this.alertCtrl.create({
-      title: 'Fail',
+      title: title,
       subTitle: text,
-      buttons: ['OK']
+      buttons: [
+       {
+         text: 'OK',
+         handler: data => {
+           if (this.createSuccess) {
+             this.navCtrl.popToRoot();
+           }
+         }
+       }
+     ]
     });
-    alert.present(prompt);
+    alert.present();
   }
-
-
 
 }
