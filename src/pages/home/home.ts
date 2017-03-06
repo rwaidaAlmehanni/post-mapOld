@@ -14,6 +14,17 @@ export class HomePage {
   ionViewDidLoad(){
     this.loadMap()
   }
+  addInfoWindow(marker, content){
+ 
+  let infoWindow = new google.maps.InfoWindow({
+    content: content
+  });
+ 
+  google.maps.event.addListener(marker, 'click', () => {
+    infoWindow.open(this.map, marker);
+  });
+ 
+}
  loadMap(){
  
     Geolocation.getCurrentPosition().then((position) => {
@@ -27,6 +38,17 @@ export class HomePage {
       }
  
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      //adding marker...
+       let marker = new google.maps.Marker({
+           map: this.map,
+         animation: google.maps.Animation.DROP,
+          position: this.map.getCenter()
+           });
+      //adding ifoWindow ...
+       let content = "<h4>hello I am here :)</h4>";          
+ 
+      this.addInfoWindow(marker, content);
+ 
  
     }, (err) => {
       console.log(err);
