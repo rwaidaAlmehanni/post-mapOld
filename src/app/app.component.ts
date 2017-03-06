@@ -4,6 +4,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
+import { InfoModalPage } from '../pages/info-modal/info-modal' ;
 // this one for the auth components 
 import { Auth } from '../providers/auth';
 //this one is for showing loding ... message 

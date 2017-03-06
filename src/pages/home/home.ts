@@ -1,7 +1,8 @@
 import { Component , ViewChild } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController , ModalController , ViewController } from 'ionic-angular';
 import { Geolocation} from 'ionic-native'
 import {googlemaps} from 'googlemaps'; 
+import { InfoModalPage } from '../info-modal/info-modal';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -9,19 +10,16 @@ import {googlemaps} from 'googlemaps';
 export class HomePage {
     @ViewChild('map') mapElement;
     map: any;
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController , public modalCtrl: ModalController) {
   }
   ionViewDidLoad(){
     this.loadMap()
   }
-  addInfoWindow(marker, content){
- 
-  let infoWindow = new google.maps.InfoWindow({
-    content: content
-  });
- 
-  google.maps.event.addListener(marker, 'click', () => {
-    infoWindow.open(this.map, marker);
+
+  addInfoWindow(marker){
+   google.maps.event.addListener(marker, 'click', () => {
+     let infoWindow = this.modalCtrl.create(InfoModalPage);
+      infoWindow.present();
   });
  
 }
@@ -30,26 +28,22 @@ export class HomePage {
     Geolocation.getCurrentPosition().then((position) => {
  
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
- 
       let mapOptions = {
         center: latLng,
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
- 
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
       //adding marker...
        let marker = new google.maps.Marker({
            map: this.map,
          animation: google.maps.Animation.DROP,
           position: this.map.getCenter()
            });
-      //adding ifoWindow ...
-       let content = "<h4>hello I am here :)</h4>";          
- 
-      this.addInfoWindow(marker, content);
- 
- 
+
+      //adding ifoWindow ...          
+      this.addInfoWindow(marker);
     }, (err) => {
       console.log(err);
     });
@@ -57,3 +51,7 @@ export class HomePage {
   }
  
 }
+
+
+
+

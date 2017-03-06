@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { InfoModalPage } from '../pages/info-modal/info-modal' ;
 import { Auth } from '../providers/auth';
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { Auth } from '../providers/auth';
     ContactPage,
     HomePage,
     TabsPage,
+    InfoModalPage,
     LoginPage,
     RegisterPage
   ],
@@ -27,6 +29,7 @@ import { Auth } from '../providers/auth';
     AboutPage,
     ContactPage,
     HomePage,
+    InfoModalPage,
     TabsPage,
     LoginPage,
     RegisterPage
