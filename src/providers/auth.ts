@@ -37,10 +37,12 @@ currentUser: User;
   }
 
  public login(credentials) {
+   console.log(credentials)
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
       return Observable.create(observer => {
+        console.log(observer)
         // At this point make a request to your backend to make a real check!
         let access = (credentials.password === "pass" && credentials.email === "email");
         // may be here will be storing the token 
