@@ -9,7 +9,9 @@ import { InfoModalPage } from '../pages/info-modal/info-modal' ;
 import { Auth } from '../providers/auth';
 //this one is for showing loding ... message 
 import { LoadingController } from 'ionic-angular';
-
+import { firebaseConfig } from './firebase.config';
+import * as firebase from 'firebase';
+import { UploadPage } from '../pages/upload/upload';
 // @Component({
 //   templateUrl: 'app.html'
 // })
@@ -49,7 +51,7 @@ import { LoadingController } from 'ionic-angular';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = LoginPage;
+  rootPage = TabsPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {
@@ -58,5 +60,6 @@ export class MyApp {
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
+    firebase.initializeApp(firebaseConfig);
   }
 }

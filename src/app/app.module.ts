@@ -9,6 +9,8 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { InfoModalPage } from '../pages/info-modal/info-modal' ;
 import { Auth } from '../providers/auth';
+import { UploadPage } from '../pages/upload/upload';
+import { ItemComponent } from './../pages/upload/upload';
 @NgModule({
   declarations: [
     MyApp,
@@ -18,7 +20,9 @@ import { Auth } from '../providers/auth';
     TabsPage,
     InfoModalPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    UploadPage,
+    ItemComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -32,7 +36,9 @@ import { Auth } from '../providers/auth';
     InfoModalPage,
     TabsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    UploadPage,
+    ItemComponent
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},Auth]
 })
