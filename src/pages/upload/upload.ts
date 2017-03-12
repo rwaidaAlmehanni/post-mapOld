@@ -34,8 +34,8 @@ export class UploadPage {
    */
   ionViewDidLoad() {
 
-       console.log(firebase.auth().currentUser.uid)
-          console.log(firebase.auth().currentUser.email)
+       // console.log(firebase.auth().currentUser.uid)
+       //    console.log(firebase.auth().currentUser.email)
     // we will use anonymous auth for this example
           this.loadData();
 

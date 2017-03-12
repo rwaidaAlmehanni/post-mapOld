@@ -50,13 +50,13 @@ export class HomePage {
         result.push(element);
       });
 
-     this.assetCollection =  result
+     this.assetCollection =  result ;
 
   });
 }
 
  loadMap(){
- 
+     var arr=[];
     Geolocation.getCurrentPosition().then((position) => {
  
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -70,6 +70,14 @@ export class HomePage {
       //adding marker...
 
       for(let mark of this.assetCollection){
+        //console.log("****"+this.assetCollection);
+        for(var i=0;i<this.assetCollection.length;i++){
+              if(this.assetCollection[i]['latitude'] === mark.latitude && this.assetCollection[i]['latitude'] === mark.longitude){
+                arr.push(this.assetCollection[i].URL);
+                console.log("****"+this.assetCollection[i]['latitude']);
+              }
+            }
+            console.log("****"+arr);
              let marker = new google.maps.Marker({
                  map: this.map,
                animation: google.maps.Animation.DROP,
