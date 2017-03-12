@@ -25,12 +25,17 @@ export class HomePage {
 
 
    addInfoWindow(marker, message) {
+     var div="<div>";
+     for(var i=0;i<message.length;i++){
+        div+="<img src ="+message[i].URL+"/>" ;
+     }
 
             let infoWindow = new google.maps.InfoWindow({
-                content: "<img src ="+message+"/>"
+                content: div+"</div>"
             });
-
+            div="";
             google.maps.event.addListener(marker, 'click',  ()=> {
+
                 infoWindow.open(this.map, marker);
             });
         }
@@ -74,17 +79,17 @@ export class HomePage {
         for(var i=0;i<this.assetCollection.length;i++){
               if(this.assetCollection[i]['latitude'] === mark.latitude && this.assetCollection[i]['latitude'] === mark.longitude){
                 arr.push(this.assetCollection[i].URL);
-                console.log("****"+this.assetCollection[i]['latitude']);
+               
               }
             }
-            console.log("****"+arr);
+        
              let marker = new google.maps.Marker({
                  map: this.map,
                animation: google.maps.Animation.DROP,
                 position: {lat:mark.latitude,lng:mark.longitude}
                  });
               // adding ifoWindow ...          
-      this.addInfoWindow(marker,mark.URL);
+      this.addInfoWindow(marker,arr);
            }
 
     
