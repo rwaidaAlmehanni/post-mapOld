@@ -62,11 +62,11 @@ export class MyApp {
 
   constructor(platform: Platform) { 
     firebase.initializeApp({
-    apiKey: "AIzaSyC5hnlRltVYvhQboZ9bBI80tFJh7vQG4VY",
-    authDomain: "postmap-55d39.firebaseapp.com",
-    databaseURL: "https://postmap-55d39.firebaseio.com",
-    storageBucket: "postmap-55d39.appspot.com",
-    messagingSenderId: "717115718631"
+    apiKey: "AIzaSyAseZYIB_FzpV-GuKD3TaL2Ykca9BM8ME8",
+    authDomain: "post-map-f2fbc.firebaseapp.com",
+    databaseURL: "https://post-map-f2fbc.firebaseio.com",
+    storageBucket: "post-map-f2fbc.appspot.com",
+    messagingSenderId: "791954812338"
 });
       this.zone = new NgZone({});
       const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
@@ -75,7 +75,7 @@ export class MyApp {
       this.rootPage = LoginPage;
       unsubscribe();
     } else { 
-      this.rootPage = HomePage; 
+      this.rootPage = TabsPage; 
       unsubscribe();
     }
   });     
