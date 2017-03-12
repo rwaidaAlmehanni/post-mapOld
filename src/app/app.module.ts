@@ -6,11 +6,16 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
-import { RegisterPage } from '../pages/register/register';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password';
+import { SignupPage } from '../pages/signup/signup';
 import { InfoModalPage } from '../pages/info-modal/info-modal' ;
-import { Auth } from '../providers/auth';
 import { UploadPage } from '../pages/upload/upload';
 import { ItemComponent } from './../pages/upload/upload';
+import { AuthData } from '../providers/auth-data';
+
+//import { EmailValidator } from './validators/email-validator';
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -20,9 +25,11 @@ import { ItemComponent } from './../pages/upload/upload';
     TabsPage,
     InfoModalPage,
     LoginPage,
-    RegisterPage,
     UploadPage,
-    ItemComponent
+    ItemComponent,
+    ResetPasswordPage,
+    SignupPage
+   // EmailValidator 
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -36,10 +43,11 @@ import { ItemComponent } from './../pages/upload/upload';
     InfoModalPage,
     TabsPage,
     LoginPage,
-    RegisterPage,
     UploadPage,
-    ItemComponent
+    ItemComponent,
+     ResetPasswordPage,
+    SignupPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},Auth]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},AuthData]
 })
 export class AppModule {}

@@ -1,17 +1,22 @@
-import { Component } from '@angular/core';
+import { Component , NgZone } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { TabsPage } from '../pages/tabs/tabs';
-import { LoginPage } from '../pages/login/login';
 import { InfoModalPage } from '../pages/info-modal/info-modal' ;
 // this one for the auth components 
-import { Auth } from '../providers/auth';
+import { AuthData } from '../providers/auth-data';
 //this one is for showing loding ... message 
 import { LoadingController } from 'ionic-angular';
-import { firebaseConfig } from './firebase.config';
-import * as firebase from 'firebase';
-import { UploadPage } from '../pages/upload/upload';
+//import { firebaseConfig } from './firebase.config';
+import firebase from 'firebase';
+
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
+import { HomePage } from '../pages/home/home';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password';
+
+
 // @Component({
 //   templateUrl: 'app.html'
 // })
@@ -47,19 +52,41 @@ import { UploadPage } from '../pages/upload/upload';
 
 
 // }
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = TabsPage;
+  rootPage :any;
+  zone: NgZone;
 
-  constructor(platform: Platform) {
+  constructor(platform: Platform) { 
+    firebase.initializeApp({
+    apiKey: "AIzaSyC5hnlRltVYvhQboZ9bBI80tFJh7vQG4VY",
+    authDomain: "postmap-55d39.firebaseapp.com",
+    databaseURL: "https://postmap-55d39.firebaseio.com",
+    storageBucket: "postmap-55d39.appspot.com",
+    messagingSenderId: "717115718631"
+});
+      this.zone = new NgZone({});
+      const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      this.zone.run( () => {
+    if (!user) {
+      this.rootPage = LoginPage;
+      unsubscribe();
+    } else { 
+      this.rootPage = HomePage; 
+      unsubscribe();
+    }
+  });     
+});
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
-    firebase.initializeApp(firebaseConfig);
-  }
+
+    
+  }   
 }
