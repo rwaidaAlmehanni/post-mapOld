@@ -6,7 +6,7 @@ import { SignupPage } from '../signup/signup';
 import { HomePage } from '../home/home';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { EmailValidator } from '../../app/validators/email-validator';
-
+import { TabsPage } from '../tabs/tabs';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -42,7 +42,7 @@ export class LoginPage {
     } else {
       this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password).then( authData => {
         this.loading.dismiss().then( () => {
-          this.nav.setRoot(HomePage);
+          this.nav.setRoot(TabsPage);
         });
       }, error => {
         this.loading.dismiss().then( () => {

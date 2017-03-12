@@ -33,20 +33,8 @@ export class UploadPage {
    */
   ionViewDidLoad() {
     // we will use anonymous auth for this example
-    firebase.auth().signInWithEmailAndPassword('newuser@mail.com', 'password')
-      .then((_auth) => {
-        // when authenticated... alert the user
-        console.log('login success');
-        this.userAuth = _auth;
-        this.zone.run(() => {
           this.loadData();
-        });
-      })
-      .catch((error: Error) => {
-        // Handle Errors here.
-        var errorMessage = error.message;
-        alert(errorMessage);
-      });
+  
   }
 
   /** 
