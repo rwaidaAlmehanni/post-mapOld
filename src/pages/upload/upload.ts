@@ -2,8 +2,9 @@ import { Component, ChangeDetectionStrategy, Input, NgZone } from '@angular/core
 import { NavController, Platform } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Camera, Device } from 'ionic-native';
-
 import * as firebase from 'firebase';
+import { Geolocation} from 'ionic-native'
+import {googlemaps} from 'googlemaps'; 
 
 declare var window: any;
 
@@ -32,8 +33,28 @@ export class UploadPage {
    * here we will initialize the component
    */
   ionViewDidLoad() {
+
+       console.log(firebase.auth().currentUser.uid)
+          console.log(firebase.auth().currentUser.email)
     // we will use anonymous auth for this example
           this.loadData();
+
+              // we will use anonymous auth for this example
+    //               // we will use anonymous auth for this example
+    // firebase.auth().signInWithEmailAndPassword('newuser@mail.com', 'password')
+    //   .then((_auth) => {
+    //     // when authenticated... alert the user
+    //     console.log('login success');
+    //     this.userAuth = _auth;
+    //     this.zone.run(() => {
+    //       this.loadData();
+    //     });
+    //   })
+    //   .catch((error: Error) => {
+    //     // Handle Errors here.
+    //     var errorMessage = error.message;
+    //     alert(errorMessage);
+    //   });
   
   }
 
@@ -104,14 +125,14 @@ uploadToFirebase(_imageBlob) {
 
 saveToDatabaseAssetList(_uploadSnapshot) {
   var ref = firebase.database().ref('assets');
-
   return new Promise((resolve, reject) => {
-
-    // we will save meta data of image in database
-    var dataToSave = {
+      Geolocation.getCurrentPosition().then((position) => {
+     var dataToSave = {
       'URL': _uploadSnapshot.downloadURL, // url to access file
       'name': _uploadSnapshot.metadata.name, // name of the file
       'owner': firebase.auth().currentUser.uid,
+      'latitude':position.coords.latitude,
+      'longitude':position.coords.longitude,
       'email': firebase.auth().currentUser.email,
       'lastUpdated': new Date().getTime(),
     };
@@ -121,6 +142,14 @@ saveToDatabaseAssetList(_uploadSnapshot) {
     }).catch((_error) => {
       reject(_error);
     });
+     
+ 
+    }, (err) => {
+      console.log(err);
+    });
+
+    // we will save meta data of image in database
+
   });
 
 }
