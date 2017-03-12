@@ -3,6 +3,12 @@ import { NavController , ModalController , ViewController } from 'ionic-angular'
 import { Geolocation} from 'ionic-native'
 import {googlemaps} from 'googlemaps'; 
 import { InfoModalPage } from '../info-modal/info-modal';
+import { AuthData } from  '../../providers/auth-data';
+import {LoginPage} from '../login/login';
+import  {SignupPage} from '../signup/signup';
+
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -10,7 +16,7 @@ import { InfoModalPage } from '../info-modal/info-modal';
 export class HomePage {
     @ViewChild('map') mapElement;
     map: any;
-  constructor(public navCtrl: NavController , public modalCtrl: ModalController) {
+  constructor(public navCtrl: NavController , public modalCtrl: ModalController , public authData:AuthData) {
   }
   ionViewDidLoad(){
     this.loadMap()
@@ -49,6 +55,11 @@ export class HomePage {
     });
  
   }
+  logOut(){
+  this.authData.logoutUser().then(() => {
+    this.navCtrl.setRoot(LoginPage);
+  });
+}
  
 }
 
