@@ -25,12 +25,17 @@ export class HomePage {
 
 
    addInfoWindow(marker, message) {
+     var div="<div>";
+     for(var i=0;i<message.length;i++){
+        div+="<img src ="+message[i]+"/>" ;
+     }
+     div+="</div>";
 
             let infoWindow = new google.maps.InfoWindow({
-                content: "<img src ="+message+"/>"
+                content: div
             });
-
             google.maps.event.addListener(marker, 'click',  ()=> {
+
                 infoWindow.open(this.map, marker);
             });
         }
@@ -50,13 +55,14 @@ export class HomePage {
         result.push(element);
       });
 
-     this.assetCollection =  result
+     this.assetCollection =  result ;
 
   });
 }
-
+  
  loadMap(){
- 
+
+     var arr=[];
     Geolocation.getCurrentPosition().then((position) => {
  
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -70,13 +76,21 @@ export class HomePage {
       //adding marker...
 
       for(let mark of this.assetCollection){
+        arr=[];
+        for(let i of this.assetCollection){
+          if((i.latitude === mark.latitude) && (i.longitude === mark.longitude )){
+          console.log(arr)
+          arr.push(i.URL)
+          }
+        }
              let marker = new google.maps.Marker({
                  map: this.map,
                animation: google.maps.Animation.DROP,
                 position: {lat:mark.latitude,lng:mark.longitude}
                  });
-              // adding ifoWindow ...          
-      this.addInfoWindow(marker,mark.URL);
+              // adding ifoWindow ...
+
+      this.addInfoWindow(marker,arr);
            }
 
     
