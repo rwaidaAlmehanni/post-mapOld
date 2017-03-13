@@ -27,13 +27,13 @@ export class HomePage {
    addInfoWindow(marker, message) {
      var div="<div>";
      for(var i=0;i<message.length;i++){
-        div+="<img src ="+message[i].URL+"/>" ;
+        div+="<img src ="+message[i]+"/>" ;
      }
+     div+="</div>";
 
             let infoWindow = new google.maps.InfoWindow({
-                content: div+"</div>"
+                content: div
             });
-            div="";
             google.maps.event.addListener(marker, 'click',  ()=> {
 
                 infoWindow.open(this.map, marker);
@@ -59,8 +59,9 @@ export class HomePage {
 
   });
 }
-
+  
  loadMap(){
+
      var arr=[];
     Geolocation.getCurrentPosition().then((position) => {
  
@@ -75,20 +76,20 @@ export class HomePage {
       //adding marker...
 
       for(let mark of this.assetCollection){
-        //console.log("****"+this.assetCollection);
-        for(var i=0;i<this.assetCollection.length;i++){
-              if(this.assetCollection[i]['latitude'] === mark.latitude && this.assetCollection[i]['latitude'] === mark.longitude){
-                arr.push(this.assetCollection[i].URL);
-               
-              }
-            }
-        
+        arr=[];
+        for(let i of this.assetCollection){
+          if((i.latitude === mark.latitude) && (i.longitude === mark.longitude )){
+          console.log(arr)
+          arr.push(i.URL)
+          }
+        }
              let marker = new google.maps.Marker({
                  map: this.map,
                animation: google.maps.Animation.DROP,
                 position: {lat:mark.latitude,lng:mark.longitude}
                  });
-              // adding ifoWindow ...          
+              // adding ifoWindow ...
+
       this.addInfoWindow(marker,arr);
            }
 
