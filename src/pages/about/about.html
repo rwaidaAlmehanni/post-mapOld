@@ -7,5 +7,10 @@
 </ion-header>
 
 <ion-content padding>
+<ul *ngFor="let item of items">
+   <li *ngFor="let value of item | objectEmails">
+     {{ value }}
+   </li>
+ </ul>
 
 </ion-content>
