@@ -7,18 +7,26 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'about.html'
 })
 export class AboutPage {
-arr
-x
+arr: any = []
+x: any = []
   constructor(public navCtrl: NavController) {
-  		this.x=[]
-      this.arr=[];
+
+
+  }
+  ionViewDidLoad() {
   let database=firebase.database().ref();
   let users=firebase.database().ref().child("userProfile");
   users.on("child_added",snap=>{
   this.arr.push(snap.val());
+  console.log(this.arr)
   });
- 
+
   }
+
+
+
+
+
   addFriend(email){
   	let database=firebase.database().ref();
   let friends=database.child("userProfile").child(firebase.auth().currentUser.uid).child("friends");

@@ -1,14 +1,13 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
-      Create an Account
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-
-<ion-content padding>
-  <img src="http://placehold.it/300x100">
+<ion-content>
+ 
+  <div padding [@flyInBottomFast]="cloudState" id="cloud-layer">
+ 
+    <ion-row>
+      <ion-col>
+        <img [@flyInBottomSlow]="logoState" src="assets/images/joshuamorony.png" />
+      </ion-col>
+    </ion-row>
+ 
   <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
 
     <ion-item>
@@ -37,4 +36,15 @@
       Create an Account
     </button>
   </form>
+
+    <button ion-button block clear (click)="goToSignup()">
+      Create a new account
+    </button>
+
+    <button ion-button block clear (click)="goToResetPassword()">
+      I forgot my password
+    </button>
+ 
+  </div>
+ 
 </ion-content>

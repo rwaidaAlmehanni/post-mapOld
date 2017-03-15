@@ -1,15 +1,15 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
-      Login
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content>
+ 
+  <div padding [@flyInBottomFast]="cloudState" id="cloud-layer">
+ 
+    <ion-row>
+      <ion-col>
+        <img [@flyInBottomSlow]="logoState" src="assets/images/joshuamorony.png" />
+      </ion-col>
+    </ion-row>
+ 
 
-<ion-content padding>
-  <img src="http://placehold.it/300x100">
-
-  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+            <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
 
     <ion-item>
       <ion-label stacked>Email</ion-label>
@@ -23,7 +23,7 @@
 
     <ion-item>
       <ion-label stacked>Password</ion-label>
-      <ion-input #password formControlName="password" type="password" placeholder="Your password" 
+      <ion-input #password formControlName="password" type="password" 
         [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>
     </ion-item>
     <ion-item class="error-message" 
@@ -44,5 +44,7 @@
     <button ion-button block clear (click)="goToResetPassword()">
       I forgot my password
     </button>
-
+ 
+  </div>
+ 
 </ion-content>
