@@ -12,6 +12,7 @@ import { InfoModalPage } from '../pages/info-modal/info-modal' ;
 import { UploadPage } from '../pages/upload/upload';
 import { ItemComponent } from './../pages/upload/upload';
 import { AuthData } from '../providers/auth-data';
+import { FriendsPage } from '../pages/friends/friends'; 
 
 //import { EmailValidator } from './validators/email-validator';
 
@@ -28,7 +29,8 @@ import { AuthData } from '../providers/auth-data';
     UploadPage,
     ItemComponent,
     ResetPasswordPage,
-    SignupPage
+    SignupPage,
+    FriendsPage
    // EmailValidator 
   ],
   imports: [
@@ -46,7 +48,8 @@ import { AuthData } from '../providers/auth-data';
     UploadPage,
     ItemComponent,
      ResetPasswordPage,
-    SignupPage
+    SignupPage,
+    FriendsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},AuthData]
 })

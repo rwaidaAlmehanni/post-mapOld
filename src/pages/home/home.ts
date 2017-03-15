@@ -36,17 +36,11 @@ go(){
   console.log("ggggggg")
 }
    addInfoWindow(marker, message) {
-     // var div="<div>";
-     // for(var i=0;i<message.length;i++){
-     //    div+="<img src ="+message[i].URL+"/>" ;
-     // }
-
             let div ="<div>"
             let like=0;
            
             for(let i of message){
-               this.waleed=2
-               var ref = firebase.database().ref('/assets');
+               let ref = firebase.database().ref('/assets');
                this.likes=ref.child(i.slice(-10)).child("likes")
                this.likes.on('value', function(snapshot) {
                  like= snapshot.val();
@@ -65,8 +59,8 @@ go(){
 
             let infoWindow = new google.maps.InfoWindow({
 
-
                 content: div+"</div>"
+
             });
             google.maps.event.addListener(marker, 'click',  ()=> {
 
@@ -88,19 +82,8 @@ go(){
 
         this.result.push(element);
       })
-      Geolocation.getCurrentPosition().then((position) => {
+ Geolocation.getCurrentPosition().then((position) => {
 
-        result.push(element);
-      });
-
-  });
-}
-
- loadMap(){
-     var arr=[];
-    Geolocation.getCurrentPosition().then((position) => {
-
- 
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       let mapOptions = {
         center: latLng,
@@ -108,10 +91,7 @@ go(){
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-
-      //adding marker...
-
-
+     
       for(let mark of this.result){
         this.arr=[]
             for(let image of this.result){
@@ -121,27 +101,21 @@ go(){
               }
             }
 
-
              let marker = new google.maps.Marker({
                  map: this.map,
                animation: google.maps.Animation.DROP,
                 position: {lat:mark.latitude,lng:mark.longitude}
                  });
               // adding ifoWindow ...          
-
       this.addInfoWindow(marker,this.arr);
 
               // adding ifoWindow ...
-           }
-
-
-       
+  
+}   
     }, (err) => {
       console.log(err);
     });
   })
- 
-   
  
   }
 //    goToCreate(){
