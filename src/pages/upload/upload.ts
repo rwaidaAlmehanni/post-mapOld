@@ -171,8 +171,7 @@ doGetPicture() {
   Camera.getPicture({
     destinationType: Camera.DestinationType.FILE_URI,
     sourceType: imageSource,
-    targetHeight: 1000,
-    targetWidth : 700,
+    targetHeight: 640,
     correctOrientation: true
   }).then((_imagePath) => {
     alert('got image path ' + _imagePath);
