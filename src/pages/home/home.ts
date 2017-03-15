@@ -36,11 +36,10 @@ go(){
   console.log("ggggggg")
 }
    addInfoWindow(marker, message) {
-     var div="<div>";
-     for(var i=0;i<message.length;i++){
-        div+="<img src ="+message[i]+"/>" ;
-     }
-     div+="</div>";
+     // var div="<div>";
+     // for(var i=0;i<message.length;i++){
+     //    div+="<img src ="+message[i].URL+"/>" ;
+     // }
 
             let div ="<div>"
             let like=0;
@@ -66,8 +65,8 @@ go(){
 
             let infoWindow = new google.maps.InfoWindow({
 
-                content: div+"</div>"
 
+                content: div+"</div>"
             });
             google.maps.event.addListener(marker, 'click',  ()=> {
 
@@ -96,9 +95,8 @@ go(){
 
   });
 }
-  
- loadMap(){
 
+ loadMap(){
      var arr=[];
     Geolocation.getCurrentPosition().then((position) => {
 
@@ -113,8 +111,7 @@ go(){
 
       //adding marker...
 
-     
-     
+
       for(let mark of this.result){
         this.arr=[]
             for(let image of this.result){
@@ -124,16 +121,17 @@ go(){
               }
             }
 
+
              let marker = new google.maps.Marker({
                  map: this.map,
                animation: google.maps.Animation.DROP,
                 position: {lat:mark.latitude,lng:mark.longitude}
                  });
               // adding ifoWindow ...          
+
       this.addInfoWindow(marker,this.arr);
 
               // adding ifoWindow ...
-
            }
 
 
