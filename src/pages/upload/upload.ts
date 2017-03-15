@@ -75,7 +75,7 @@ export class UploadPage {
       });
 
       this.assetCollection = result;
-      console.log(this.assetCollection)
+  
 
   });
 }
@@ -124,7 +124,7 @@ uploadToFirebase(_imageBlob) {
 }
 
 saveToDatabaseAssetList(_uploadSnapshot) {
-  var ref = firebase.database().ref('assets');
+  var ref = firebase.database().ref('/assets');
   return new Promise((resolve, reject) => {
       Geolocation.getCurrentPosition().then((position) => {
      var dataToSave = {
@@ -135,9 +135,13 @@ saveToDatabaseAssetList(_uploadSnapshot) {
       'longitude':position.coords.longitude,
       'email': firebase.auth().currentUser.email,
       'lastUpdated': new Date().getTime(),
+      'likes':0,
+      'disLike':0,
+      'comments':"hello"
     };
+    let url=_uploadSnapshot.downloadURL.slice(-10)
+    ref.child(url).set(dataToSave, (_response) => {
 
-    ref.push(dataToSave, (_response) => {
       resolve(_response);
     }).catch((_error) => {
       reject(_error);
@@ -151,6 +155,7 @@ saveToDatabaseAssetList(_uploadSnapshot) {
     // we will save meta data of image in database
 
   });
+
 
 }
 
