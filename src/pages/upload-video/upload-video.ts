@@ -10,7 +10,7 @@ declare var window: any;
 
 
 @Component({
-  templateUrl: 'upload.html',
+  templateUrl: 'upload-video.html',
 })
 export class UploadPage {
 

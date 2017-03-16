@@ -13,7 +13,7 @@ import { UploadPage } from '../pages/upload/upload';
 import { ItemComponent } from './../pages/upload/upload';
 import { AuthData } from '../providers/auth-data';
 import { FriendsPage } from '../pages/friends/friends'; 
-
+import { ProfilePage } from '../pages/profile/profile'; 
 //import { EmailValidator } from './validators/email-validator';
 
 
@@ -30,7 +30,8 @@ import { FriendsPage } from '../pages/friends/friends';
     ItemComponent,
     ResetPasswordPage,
     SignupPage,
-    FriendsPage
+    FriendsPage,
+    ProfilePage
    // EmailValidator 
   ],
   imports: [
@@ -49,7 +50,8 @@ import { FriendsPage } from '../pages/friends/friends';
     ItemComponent,
      ResetPasswordPage,
     SignupPage,
-    FriendsPage
+    FriendsPage,
+    ProfilePage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},AuthData]
 })

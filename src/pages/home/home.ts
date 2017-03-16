@@ -49,11 +49,11 @@ go(){
 
               div+="<img src ="+i+"/>"
               div+="<br>"
-              this.go();
+              // this.go();
               //console.log(like)
-              div+="<button ion-button  onclick= \" console.log('go') \" >"+like+"</button>"
-              div+="<button ion-button color='dark'>"+'comments'+"</button>"
-              div+="<button ion-button color='dark'>"+'disLike'+"</button>"
+              // div+="<button ion-button  onclick= \" console.log('go') \" >"+like+"</button>"
+              // div+="<button ion-button color='dark'>"+'comments'+"</button>"
+              // div+="<button ion-button color='dark'>"+'disLike'+"</button>"
 
             }
 
