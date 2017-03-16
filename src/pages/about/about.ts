@@ -1,49 +1,29 @@
 import { Component } from '@angular/core';
-import * as firebase from 'firebase';
 import { NavController } from 'ionic-angular';
-
+import * as firebase from 'firebase';
+ 
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
 })
 export class AboutPage {
-arr: any = []
-x: any = []
-  constructor(public navCtrl: NavController) {
+ 
+    cards: any;
+    category: string = 'gear';
+ 
+    constructor(public navCtrl: NavController) {
+ 
+        this.cards = [];
+      firebase.database().ref('assets').orderByKey().once('value', (_snapshot: any) => {
+        
+      _snapshot.forEach((_childSnapshot) => {
+        // get the key/id and the data for display
+        var element = _childSnapshot.val();
+        element.id = _childSnapshot.key;
 
-
-  }
-  ionViewDidLoad() {
-  let database=firebase.database().ref();
-  let users=firebase.database().ref().child("userProfile");
-  users.on("child_added",snap=>{
-  this.arr.push(snap.val());
-  console.log(this.arr)
-  });
-
-  }
-
-
-
-
-
-  addFriend(email){
-  	let database=firebase.database().ref();
-  let friends=database.child("userProfile").child(firebase.auth().currentUser.uid).child("friends");
-
-  	for(let user of this.arr){
-  		if(email===user.email){
-  		if(user.uid!==firebase.auth().currentUser.uid){
-  	friends.child(user.uid).set(user.uid)
-  	database.child("userProfile").child(user.uid).child("friends").child(firebase.auth().currentUser.uid).set(firebase.auth().currentUser.uid);
-  }
-
-
-  		}
-  		
-  	}
-  	
-  }
-
-
+        this.cards.push(element);
+      })
+    })
+ 
+   }
 }
