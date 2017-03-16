@@ -9,6 +9,11 @@
     </ion-row>
  
   <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
+    <ion-item>
+       <ion-input #text formControlName="userName" type="text" placeholder="please Enter your Name" 
+        [class]=" signupForm.controls.userName.dirty">
+        </ion-input>
+    </ion-item>
 
     <ion-item>
       <ion-label stacked>Email</ion-label>
@@ -20,6 +25,7 @@
       *ngIf="!signupForm.controls.email.valid  && signupForm.controls.email.dirty">
       <p>Please enter a valid email.</p>
     </ion-item>
+
 
     <ion-item>
       <ion-label stacked>Password</ion-label>

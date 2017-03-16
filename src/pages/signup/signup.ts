@@ -8,6 +8,7 @@ import { AuthData } from '../../providers/auth-data';
 import { EmailValidator } from '../../app/validators/email-validator';
 import { HomePage } from '../home/home';
 
+
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
@@ -71,6 +72,7 @@ export class SignupPage {
     public alertCtrl: AlertController) {
 
     this.signupForm = formBuilder.group({
+      userName:[''],
       email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
     })
@@ -83,11 +85,14 @@ export class SignupPage {
    * If the form is invalid it will just log the form value, feel free to handle that as you like.
    */
   signupUser(){
+     console.log(this.signupForm.value.userName)
     if (!this.signupForm.valid){
-      console.log(this.signupForm.value);
+      console.log('inalid');
     } else {
-      this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password)
+
+   this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password,this.signupForm.value.userName)
       .then(() => {
+
         this.loading.dismiss().then( () => {
           this.nav.setRoot(HomePage);
         });
