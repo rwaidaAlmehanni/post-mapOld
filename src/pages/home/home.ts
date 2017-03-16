@@ -91,7 +91,7 @@ go(){
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-     
+     console.log(this.result)
       for(let mark of this.result){
         this.arr=[]
             for(let image of this.result){
