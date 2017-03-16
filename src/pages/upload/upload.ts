@@ -33,29 +33,7 @@ export class UploadPage {
    * here we will initialize the component
    */
   ionViewDidLoad() {
-
-       // console.log(firebase.auth().currentUser.uid)
-       //    console.log(firebase.auth().currentUser.email)
-    // we will use anonymous auth for this example
           this.loadData();
-
-              // we will use anonymous auth for this example
-    //               // we will use anonymous auth for this example
-    // firebase.auth().signInWithEmailAndPassword('newuser@mail.com', 'password')
-    //   .then((_auth) => {
-    //     // when authenticated... alert the user
-    //     console.log('login success');
-    //     this.userAuth = _auth;
-    //     this.zone.run(() => {
-    //       this.loadData();
-    //     });
-    //   })
-    //   .catch((error: Error) => {
-    //     // Handle Errors here.
-    //     var errorMessage = error.message;
-    //     alert(errorMessage);
-    //   });
-  
   }
 
   /** 
@@ -124,9 +102,11 @@ uploadToFirebase(_imageBlob) {
 }
 
 saveToDatabaseAssetList(_uploadSnapshot) {
-  var ref = firebase.database().ref('/assets');
+  var ref = firebase.database().ref('assets');
   return new Promise((resolve, reject) => {
+    alert('iam here ')
       Geolocation.getCurrentPosition().then((position) => {
+       
      var dataToSave = {
       'URL': _uploadSnapshot.downloadURL, // url to access file
       'name': _uploadSnapshot.metadata.name, // name of the file
@@ -139,8 +119,8 @@ saveToDatabaseAssetList(_uploadSnapshot) {
       'disLike':0,
       'comments':"hello"
     };
-    let url=_uploadSnapshot.downloadURL.slice(-10)
-    ref.child(url).set(dataToSave, (_response) => {
+    //let url=_uploadSnapshot.downloadURL.slice(-10)
+    ref.push(dataToSave, (_response) => {
 
       resolve(_response);
     }).catch((_error) => {

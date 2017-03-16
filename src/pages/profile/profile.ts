@@ -6,6 +6,8 @@ import { Camera,Device } from 'ionic-native';
 // import { LoginPage } from '../login/login';
 // import { SupportPage } from '../support/support';
 // import { UserData } from '../../providers/user-data';
+import { AuthData } from '../../providers/auth-data';
+import {LoginPage} from '../login/login';
 
 
 
@@ -15,8 +17,11 @@ import { Camera,Device } from 'ionic-native';
 })
 export class ProfilePage {
   username: string;
+  email : string;
+  src : string; 
+   userId = firebase.auth().currentUser.uid
 // , public userData: UserData
-  constructor(public alertCtrl: AlertController, public nav: NavController) {
+  constructor(public alertCtrl: AlertController, public nav: NavController, public authData: AuthData) {
 
   }
 
@@ -25,12 +30,11 @@ export class ProfilePage {
   // }
     ionViewDidLoad(){
 
-   let userId = firebase.auth().currentUser.uid
-  let user =  firebase.database().ref('/userProfile').child(userId).once('value', (_snapshot: any) => {
-          _snapshot.forEach((_childSnapshot) => {
-                 var element = _childSnapshot.val();
-            console.log(element)
-            })
+
+  let user =  firebase.database().ref('/userProfile').child(this.userId).on('value', (_snapshot: any) => {
+      this.username = _snapshot.val().user;
+      this.email= _snapshot.val().email;
+      this.src = _snapshot.val().src;
       })
 }
 
@@ -44,26 +48,27 @@ export class ProfilePage {
   // clicking OK will update the username and display it
   // clicking Cancel will close the alert and do nothing
   changeUsername() {
-    // let alert = this.alertCtrl.create({
-    //   title: 'Change Username',
-    //   buttons: [
-    //     'Cancel'
-    //   ]
-    // });
-    // alert.addInput({
-    //   name: 'username',
-    //   value: this.username,
-    //   placeholder: 'username'
-    // });
-    // alert.addButton({
-    //   text: 'Ok',
-    //   handler: (data: any) => {
-    //     this.userData.setUsername(data.username);
-    //     this.getUsername();
-    //   }
-    // });
+    let alert = this.alertCtrl.create({
+      title: 'Change Username',
+      buttons: [
+        'Cancel'
+      ]
+    });
+    alert.addInput({
+      name: 'username',
+      value: this.username,
+      placeholder: 'username'
+    });
+    alert.addButton({
+      text: 'Ok',
+      handler: (data: any) => {
+        console.log(data)
+        firebase.database().ref('/userProfile').child(this.userId).set({user:data.username,email:this.email,src:this.src});
+      //  this.getUsername();
+      }
+    });
 
-    // alert.present();
+    alert.present();
   }
 
   getUsername() {
@@ -77,6 +82,9 @@ export class ProfilePage {
   }
 
   logout() {
+    this.authData.logoutUser().then(() => {
+    this.nav.setRoot(LoginPage);
+  });
     // this.userData.logout();
     // this.nav.setRoot(LoginPage);
   }
