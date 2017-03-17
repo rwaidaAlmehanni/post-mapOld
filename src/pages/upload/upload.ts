@@ -5,6 +5,7 @@ import { Camera, Device } from 'ionic-native';
 import * as firebase from 'firebase';
 import { Geolocation} from 'ionic-native'
 import {googlemaps} from 'googlemaps'; 
+import { SignupPage } from 'signup/signup';
 
 declare var window: any;
 

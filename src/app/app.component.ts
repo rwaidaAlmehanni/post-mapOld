@@ -15,7 +15,11 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { HomePage } from '../pages/home/home';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
-import { FriendsPage } from '../pages/friends/friends'; 
+import { FriendsPage } from '../pages/friends/friends';
+import { CommentsPage } from '../pages/comments/comments';
+ 
+ 
+
 
 
 

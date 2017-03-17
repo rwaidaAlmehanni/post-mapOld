@@ -13,7 +13,8 @@ import { UploadPage } from '../pages/upload/upload';
 import { ItemComponent } from './../pages/upload/upload';
 import { AuthData } from '../providers/auth-data';
 import { FriendsPage } from '../pages/friends/friends'; 
-import { ProfilePage } from '../pages/profile/profile'; 
+import { ProfilePage } from '../pages/profile/profile';
+import { CommentsPage } from '../pages/comments/comments'; 
 //import { EmailValidator } from './validators/email-validator';
 
 
@@ -31,7 +32,8 @@ import { ProfilePage } from '../pages/profile/profile';
     ResetPasswordPage,
     SignupPage,
     FriendsPage,
-    ProfilePage
+    ProfilePage,
+    CommentsPage
    // EmailValidator 
   ],
   imports: [
@@ -51,7 +53,8 @@ import { ProfilePage } from '../pages/profile/profile';
      ResetPasswordPage,
     SignupPage,
     FriendsPage,
-    ProfilePage
+    ProfilePage,
+    CommentsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},AuthData]
 })
