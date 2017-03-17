@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController, NavParams } from 'ionic-angular';
+import * as firebase from 'firebase';
 
 @Component({
   templateUrl: 'comments.html',

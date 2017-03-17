@@ -14,7 +14,8 @@ import { ItemComponent } from './../pages/upload/upload';
 import { AuthData } from '../providers/auth-data';
 import { FriendsPage } from '../pages/friends/friends'; 
 import { ProfilePage } from '../pages/profile/profile';
-import { CommentsPage } from '../pages/comments/comments'; 
+import { CommentsPage } from '../pages/comments/comments';
+import { FindFriendsPage } from '../pages/find-friends/find-friends'; 
 //import { EmailValidator } from './validators/email-validator';
 
 
@@ -33,7 +34,8 @@ import { CommentsPage } from '../pages/comments/comments';
     SignupPage,
     FriendsPage,
     ProfilePage,
-    CommentsPage
+    CommentsPage,
+    FindFriendsPage
    // EmailValidator 
   ],
   imports: [
@@ -54,7 +56,8 @@ import { CommentsPage } from '../pages/comments/comments';
     SignupPage,
     FriendsPage,
     ProfilePage,
-    CommentsPage
+    CommentsPage,
+    FindFriendsPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},AuthData]
 })
