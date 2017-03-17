@@ -32,6 +32,7 @@ export class AboutPage {
    }
    like(item: any): void{
     ++item.likes;
+   // firebase.database().ref('assets').child(item).child('likes').set(item.likes);
   }
   showComments(item: any): void{
     let modal = this.modalCrtl.create(CommentsPage,{
