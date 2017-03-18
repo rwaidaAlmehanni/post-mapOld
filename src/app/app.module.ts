@@ -15,7 +15,7 @@ import { AuthData } from '../providers/auth-data';
 import { FriendsPage } from '../pages/friends/friends'; 
 import { ProfilePage } from '../pages/profile/profile';
 import { CommentsPage } from '../pages/comments/comments';
-import { FindFriendsPage } from '../pages/find-friends/find-friends'; 
+import { FindFriendsPage } from '../pages/fiend-friends/fiend-friends';
 //import { EmailValidator } from './validators/email-validator';
 
 

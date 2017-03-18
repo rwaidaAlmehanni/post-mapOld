@@ -17,7 +17,8 @@ import { HomePage } from '../pages/home/home';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { FriendsPage } from '../pages/friends/friends';
 import { CommentsPage } from '../pages/comments/comments';
-import { FindFriendsPage } from '../pages/find-friends/find-friends';
+import { FindFriendsPage } from '../pages/fiend-friends/fiend-friends';
+//import { FindFriendsPage } from '../fiend-friends/fiend-friends';
 import { AboutPage } from '../pages/about/about';
  
 
