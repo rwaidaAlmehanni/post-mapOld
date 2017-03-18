@@ -116,7 +116,7 @@ saveToDatabaseAssetList(_uploadSnapshot) {
       'longitude':position.coords.longitude,
       'email': firebase.auth().currentUser.email,
       'lastUpdated': new Date().getTime(),
-      'user': firebase.database().ref('/userProfile').child(firebase.auth().currentUser.uid).child("userName"),
+      'user': firebase.database().ref('/userProfile').child(firebase.auth().currentUser.uid).child("user"),
       'likes':0,
       'disLike':0,
       'comments':0

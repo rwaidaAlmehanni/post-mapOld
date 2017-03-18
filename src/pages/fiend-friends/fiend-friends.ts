@@ -1,21 +1,20 @@
-
-import { Component,Pipe, PipeTransform, Injectable} from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Component ,Pipe, PipeTransform, Injectable } from '@angular/core';
+import { ViewController, NavController } from 'ionic-angular';
 import * as firebase from 'firebase';
 
-
 @Component({
-  selector: 'page-find-friends',
-  templateUrl: 'find-friends.html'
+   selector: 'page-fiend-friends',
+  templateUrl: 'fiend-friends.html'
 })
-
-export class FindFriendsPage {
-	assetCollection: any[] = [];
-	
-constructor(public navCtrl: NavController ) {
-   this.initializeItems();
+export class FindFriendsPage{
+  assetCollection: any[] = [];
+  constructor(
+    private viewCtrl: ViewController,
+    public navCtrl: NavController
+  ) {
+    this.initializeItems();
   }
-	  initializeItems() {
+  initializeItems() {
   
     // load data from firebase...
     firebase.database().ref('assets').orderByKey().once('value', (_snapshot: any) => {
@@ -47,5 +46,14 @@ constructor(public navCtrl: NavController ) {
       })
     }
   }
+
+  close(){
+    this.viewCtrl.dismiss();
+  }
+
+ 
 }
+
+
+
 

@@ -3,7 +3,7 @@ import { NavController , ModalController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { CommentsPage } from '../comments/comments';
 import { HomePage } from '../home/home';
-
+import { FindFriendsPage } from '../fiend-friends/fiend-friends';
  
 @Component({
   selector: 'page-about',
@@ -64,6 +64,10 @@ export class AboutPage {
       comments: [item.id]
     });
     modal.present();
+  }
+  addFriends():void{
+   let modal = this.modalCrtl.create(FindFriendsPage);
+    modal.present(); 
   }
  
 
