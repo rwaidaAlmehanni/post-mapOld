@@ -5,7 +5,7 @@ import { Camera, Device } from 'ionic-native';
 import * as firebase from 'firebase';
 import { Geolocation} from 'ionic-native'
 import {googlemaps} from 'googlemaps'; 
-import { SignupPage } from 'signup/signup';
+import { SignupPage } from '../signup/signup';
 
 declare var window: any;
 
@@ -23,6 +23,7 @@ export class UploadPage {
     private http: Http,
     private zone: NgZone
   ) {
+
 
   }
 
@@ -116,13 +117,13 @@ saveToDatabaseAssetList(_uploadSnapshot) {
       'longitude':position.coords.longitude,
       'email': firebase.auth().currentUser.email,
       'lastUpdated': new Date().getTime(),
-      'user': firebase.database().ref('/userProfile').child(firebase.auth().currentUser.uid).child("user"),
       'likes':0,
       'disLike':0,
       'comments':0
 
     };
     //let url=_uploadSnapshot.downloadURL.slice(-10)
+
     ref.push(dataToSave, (_response) => {
 
       resolve(_response);
