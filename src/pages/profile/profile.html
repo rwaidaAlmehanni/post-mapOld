@@ -9,9 +9,9 @@
 
 <ion-content class="outer-content">
   <div padding-top text-center >
-    <img src="http://www.gravatar.com/avatar?d=mm&s=140" alt="avatar">
+    <img src={{src}} alt="avatar">
     <h2>{{username}}</h2>
-
+    <h3>{{email}}</h3>
     <ion-list inset>
       <button ion-item (click)="updatePicture()">Update Picture</button>
       <button ion-item (click)="changeUsername()">Change Username</button>
