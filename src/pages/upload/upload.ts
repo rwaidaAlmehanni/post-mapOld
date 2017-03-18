@@ -118,7 +118,7 @@ saveToDatabaseAssetList(_uploadSnapshot) {
       'lastUpdated': new Date().getTime(),
       'likes':0,
       'disLike':0,
-      'comments':"hello"
+      'comments':0
     };
     //let url=_uploadSnapshot.downloadURL.slice(-10)
     ref.push(dataToSave, (_response) => {

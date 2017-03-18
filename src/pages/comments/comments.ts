@@ -6,8 +6,8 @@ import * as firebase from 'firebase';
   templateUrl: 'comments.html',
 })
 export class CommentsPage {
-
-  comments: any[] = [];
+  arr:any[]=[];
+  comments: any;
   newComment: any = {};
 
   constructor(
@@ -15,6 +15,13 @@ export class CommentsPage {
     private params: NavParams
   ) {
     this.comments = this.params.get('comments');
+//     let ref = firebase.database().ref('/assets').child(this.comments.id).child("likes");
+  
+// ref.on("value", function(snapshot) {
+//  console.log(snapshot.val());
+// }, function (errorObject) {
+//  console.log("The read failed: " + errorObject.code);
+// });
   }
 
   close(){
@@ -26,7 +33,8 @@ export class CommentsPage {
       "username": "nicobytes",
       "avatar": "images/nicobytes.jpg"
     }
-    this.comments.push( this.newComment );
+    this.arr.push( this.newComment );
+     firebase.database().ref('assets').child(this.comments).child("comments").push(this.newComment);
     this.newComment = {};
   }
 
