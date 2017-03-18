@@ -34,7 +34,7 @@ export class CommentsPage {
       "avatar": "images/nicobytes.jpg"
     }
     this.arr.push( this.newComment );
-     firebase.database().ref('assets').child(this.comments).child("comments").push(this.newComment);
+    // firebase.database().ref('assets').child(this.comments).child("comments").push(this.newComment);
     this.newComment = {};
   }
 

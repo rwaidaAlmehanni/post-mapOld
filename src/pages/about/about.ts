@@ -13,7 +13,7 @@ export class AboutPage {
     obj:any;
     cards: any;
     category: string = 'gear';
-    tab1Root: any = HomePage;
+   // tab1Root: any = HomePage;
     likesNum:any;
  
     constructor(public navCtrl: NavController , private modalCrtl: ModalController) {
@@ -37,11 +37,11 @@ export class AboutPage {
      this.obj[firebase.auth().currentUser.uid.slice(-10)]=1;
      this.likesNum=Object.keys(this.obj).length;
      console.log(this.likesNum)
-    firebase.database().ref('assets').child(item.id).child("likes").set(this.obj);
+    firebase.database().ref('assets').child(item.id).child("likes").push(this.obj);
   }
   showComments(item: any): void{
     let modal = this.modalCrtl.create(CommentsPage,{
-      comments: item.id
+      comments: [item.id]
     });
     modal.present();
   }
