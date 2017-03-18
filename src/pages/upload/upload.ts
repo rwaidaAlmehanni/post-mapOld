@@ -118,6 +118,7 @@ saveToDatabaseAssetList(_uploadSnapshot) {
       'email': firebase.auth().currentUser.email,
       'lastUpdated': new Date().getTime(),
       'likes':0,
+      'user':firebase.database().ref('/userProfile').child(firebase.auth().currentUser.uid).child('user'),
       'disLike':0,
       'comments':0
 

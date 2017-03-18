@@ -1,13 +1,11 @@
-<ion-header no-border>
-  <ion-navbar color="gray">
-    <ion-buttons left>
-        <button  ion-button icon-only (click)=addFriends()>new Friend</button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
+
  
 <ion-content fullscreen>
- 
+  <ion-navbar color="gray">
+    <ion-buttons left>
+        <button (click)=addFriends()>new Friend</button>
+    </ion-buttons>
+  </ion-navbar>
     <ion-segment [(ngModel)]="category">
         <ion-segment-button value="gear">
             Gear
