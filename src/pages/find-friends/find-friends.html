@@ -1,0 +1,25 @@
+<!--
+  Generated template for the FindFriends page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>findFriends</ion-title>
+  </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+<ion-list>
+<ion-item *ngFor="let item of assetCollection">
+   <div>
+     {{ item }}
+    <button ion-button round>addFrined</button>
+   </div>
+ </ion-item>
+ </ion-list>
+
+</ion-content>

@@ -5,6 +5,7 @@ import { Camera, Device } from 'ionic-native';
 import * as firebase from 'firebase';
 import { Geolocation} from 'ionic-native'
 import {googlemaps} from 'googlemaps'; 
+import { SignupPage } from 'signup/signup';
 
 declare var window: any;
 
@@ -117,7 +118,7 @@ saveToDatabaseAssetList(_uploadSnapshot) {
       'lastUpdated': new Date().getTime(),
       'likes':0,
       'disLike':0,
-      'comments':"hello"
+      'comments':0
     };
     //let url=_uploadSnapshot.downloadURL.slice(-10)
     ref.push(dataToSave, (_response) => {

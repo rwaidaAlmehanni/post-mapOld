@@ -15,7 +15,11 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { HomePage } from '../pages/home/home';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
-import { FriendsPage } from '../pages/friends/friends'; 
+import { FriendsPage } from '../pages/friends/friends';
+import { CommentsPage } from '../pages/comments/comments';
+import { FindFriendsPage } from '../pages/find-friends/find-friends';
+import { AboutPage } from '../pages/about/about';
+ 
 
 
 
@@ -77,7 +81,7 @@ export class MyApp {
       this.rootPage = LoginPage;
       unsubscribe();
     } else { 
-      this.rootPage = TabsPage; 
+      this.rootPage = HomePage ; 
       unsubscribe();
     }
   });     
