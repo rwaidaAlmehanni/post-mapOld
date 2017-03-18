@@ -26,8 +26,7 @@
         <ion-avatar item-left>
           <img src="https://avatars.io/facebook/joshua.morony" />
         </ion-avatar>
-        <h2>{{card.email}}</h2>
-        <p>November 5, 1955</p>
+        <h2>{{card.userName}}</h2>
       </ion-item>
  
       <img src={{card.URL}} />
@@ -40,7 +39,7 @@
         <ion-col>
           <button ion-button icon-left clear small (click)="like( card )">
             <ion-icon name="thumbs-up"></ion-icon>
-            <div>{{likesNum}}</div><p>  </p> Likes
+            <div>{{card.likes}}</div><p>  </p> Likes
           </button>
         </ion-col>
         <ion-col>
@@ -51,7 +50,7 @@
         </ion-col>
         <ion-col center text-center>
           <ion-note>
-            {{card.lastUpdated}}
+            {{card.disLike}}
           </ion-note>
         </ion-col>
       </ion-row>
